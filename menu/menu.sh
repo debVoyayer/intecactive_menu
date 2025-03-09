@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x # Habilita la depuración
 
-DELAY=8
+DELAY=8 # Tiempo que se muestra en pantalla 
 LOG_FILE="resultado.log"
 
 echo "LOG_FILE: $LOG_FILE" # Verifica la variable LOG_FILE
@@ -19,7 +19,8 @@ while true; do
 EOF
 
     read -p "Introduzca la opción deseada > " REPLY
-
+# La opcción 1 te muestra en pantalla la fecha, la hora, directorio actual, archivos 
+# y ademas lo almacena en un archivo llamado LOG_FILE
     case "$REPLY" in
         0)
             break
@@ -33,7 +34,7 @@ EOF
             echo "Directorio: $CURRENT_DIR" >> "$LOG_FILE"
             echo "Fecha y hora: $DATE_TIME" >> "$LOG_FILE"
             # ls -la | tee -a "$LOG_FILE" # Comentado para verificar ls -la
-            ls -la > temp.txt
+            ls -la > temp.txt #Crea un archivo temporal
             cat temp.txt >> "$LOG_FILE"
             rm temp.txt
             echo "-----------------------------------------" >> "$LOG_FILE"
